@@ -1,30 +1,39 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Telegram website</title>
-</head>
-<body>
-    <header>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header>
         <p class="heading">
-            <a href="index.html">Вход</a> | <a href="html/registration.html">Регистрация</a>
+          <a href="index.html">Вход</a> |
+          <a href="html/registration.html">Регистрация</a>
         </p>
-    </header>
-    <main>
+      </header>
+      <main>
         <div class="container">
-            <fieldset class="registration">
-                <legend>Вход</legend>
-                <label for="login">Логин</label>
-                <input id="login" type="text" required><br><br>
-                <label for="pass">Пароль </label>
-                <input id="pass" type="password" minlength="6" required><br><br>
-                <button>Войти</button>
-            </fieldset>
+          <div class="wrapper">
+            <form class="registration">
+              <legend>Вход</legend>
+              <label for="login">Логин</label>
+              <input id="login" type="text" required /><br /><br />
+              <label for="pass">Пароль </label>
+              <input
+                id="pass"
+                type="password"
+                minlength="6"
+                required
+              /><br /><br />
+              <button>Войти</button>
+            </form>
+          </div>
         </div>
-    </main>
-    <footer>
-        
-    </footer>
-</body>
+      </main>
+      <footer>PENIS</footer>
+    </div>
+  </body>
 </html>

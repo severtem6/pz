@@ -1,35 +1,65 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registration</title>
-
-
-
-</head>
-<body>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
     <header>
-        <p class="heading">
-            <a href="../index.html">Вход</a> | <a href="">Регистрация</a>
-        </p>
+      <p class="heading">
+        <a href="../index.html">Вход</a> | <a href="">Регистрация</a>
+      </p>
     </header>
     <main>
-        <div class="container">
-            <fieldset class="registration">
-                <legend>Регистрация</legend>
-                <label id="surname">Фамилия <input id="surname" type="text" required placeholder="Иванов"></label><p></p>
-                <label id="name">Имя <input id="name" type="text" required placeholder="Иван"></label><p></p>
-                <label id="patronymic">Отчество (при наличии) <input id="patronymic" type="text" placeholder="Иванович"></label><p></p>
-                <label id="login">Логин <input id="login" type="text" required></label><p></p>
-                <label id="pass">Пароль (минимум 6 символов) <input id="pass" type="password" id="pass" name="password" minlength="6" required></label><p></p>
-                <label id="mail">E-mail <input id="mail" type="email" required placeholder="ivanov@yandex.ru"></label><p></p>
-                <button>Зарегистрироваться</button>
-            </fieldset>
+      <div class="container">
+        <div class="wrapper">
+          <form class="registration">
+            <legend>Регистрация</legend>
+            <label id="surname"
+              >Фамилия
+              <input id="surname" type="text" required placeholder="Иванов"
+            /></label>
+            <p></p>
+            <label id="name"
+              >Имя <input id="name" type="text" required placeholder="Иван"
+            /></label>
+            <p></p>
+            <label id="patronymic"
+              >Отчество (при наличии)
+              <input id="patronymic" type="text" placeholder="Иванович"
+            /></label>
+            <p></p>
+            <label id="login"
+              >Логин <input id="login" type="text" required
+            /></label>
+            <p></p>
+            <label id="pass"
+              >Пароль (минимум 6 символов)
+              <input
+                id="pass"
+                type="password"
+                id="pass"
+                name="password"
+                minlength="6"
+                required
+            /></label>
+            <p></p>
+            <label id="mail"
+              >E-mail
+              <input
+                id="mail"
+                type="email"
+                required
+                placeholder="ivanov@yandex.ru"
+            /></label>
+            <p></p>
+            <button>Зарегистрироваться</button>
+          </form>
         </div>
+      </div>
     </main>
-    <footer>
-
-    </footer>
-</body>
+    <footer></footer>
+  </body>
 </html>
