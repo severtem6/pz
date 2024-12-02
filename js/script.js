@@ -7,6 +7,7 @@ document.querySelectorAll('.input-group input').forEach(input => {
     });
 });
 
+
 const loginButton = document.querySelector('.login-button');
 loginButton.addEventListener('mouseover', () => {
     loginButton.style.transform = 'scale(1.05)';

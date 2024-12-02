@@ -90,6 +90,6 @@ body {
   text-decoration: underline;
 }
 
-.input-group ::placeholder{
+.input-group ::placeholder {
   padding-left: 15px;
 }
