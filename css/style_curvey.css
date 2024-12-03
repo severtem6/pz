@@ -1,0 +1,145 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #1a1a1a;
+  color: #333;
+}
+
+.header {
+  background-color: #6200ea;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.header nav button {
+  background-color: #ff5c8d;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.header nav button:hover {
+  background-color: #e54c7a;
+}
+
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  background: #2c2c2c;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #6200ea;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group input,
+.input-group textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 0;
+  background-color: #4a4a4a;
+}
+
+.input-group input:focus {
+  outline: none;
+  box-shadow: 0 0 5px #ff5c8d;
+}
+
+.button-group button {
+  padding: 10px 20px;
+  background-color: #6200ea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.button-group button:hover {
+  background-color: #4b00b0;
+}
+
+.survey-list {
+  list-style: none;
+  padding: 0;
+}
+
+.survey-list li {
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.survey-list li button {
+  background-color: #ff5c8d;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.survey-list li button:hover {
+  background-color: #e54c7a;
+}
+
+/* Стили для вариантов ответов */
+.answer-container {
+    margin: 10px 0;
+}
+
+.answer-container input {
+    margin: 5px 0;
+    display: block;
+    padding: 5px;
+    width: 95%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.add-answer-btn {
+    background-color: #6200ea;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.add-answer-btn:hover {
+    background-color: #4b00b0;
+}
