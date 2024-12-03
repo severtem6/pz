@@ -11,6 +11,28 @@ document
   .getElementById("view-dashboard")
   .addEventListener("click", showDashboardPage);
 
+// Личный кабинет
+function showDashboardPage() {
+  content.innerHTML = `
+          <div class="container">
+              <h2>Личный Кабинет</h2>
+              <ul class="survey-list">
+                  ${surveys
+                    .map(
+                      (survey, index) => `
+                      <li>
+                          <span>${survey.title}</span>
+                          <button onclick="viewSurvey(${index})">Просмотреть</button>
+                          <button onclick="deleteSurvey(${index})">Удалить</button>
+                      </li>
+                  `
+                    )
+                    .join("")}
+              </ul>
+          </div>
+      `;
+}
+
 // Удаление опроса
 function deleteSurvey(index) {
   surveys.splice(index, 1);
@@ -18,9 +40,8 @@ function deleteSurvey(index) {
   showDashboardPage();
 }
 
-
 function showCreateSurveyPage() {
-    content.innerHTML = `
+  content.innerHTML = `
         <div class="container">
             <h2>Создать Опрос</h2>
             <form id="survey-form">
@@ -47,22 +68,26 @@ function showCreateSurveyPage() {
         </div>
     `;
 
-    document.getElementById("add-question").addEventListener("click", addQuestion);
-    document.getElementById("survey-form").addEventListener("submit", saveSurvey);
+  document
+    .getElementById("add-question")
+    .addEventListener("click", addQuestion);
+  document.getElementById("survey-form").addEventListener("submit", saveSurvey);
 
-    // Добавляем функциональность добавления вариантов для первого вопроса
-    document.querySelector(".add-answer-btn").addEventListener("click", function () {
-        addAnswer(this);
+  // Добавляем функциональность добавления вариантов для первого вопроса
+  document
+    .querySelector(".add-answer-btn")
+    .addEventListener("click", function () {
+      addAnswer(this);
     });
 }
 
 // Добавление нового вопроса
 function addQuestion() {
-    const container = document.getElementById("questions-container");
-    const questionDiv = document.createElement("div");
-    questionDiv.className = "question";
+  const container = document.getElementById("questions-container");
+  const questionDiv = document.createElement("div");
+  questionDiv.className = "question";
 
-    questionDiv.innerHTML = `
+  questionDiv.innerHTML = `
         <input type="text" placeholder="Введите вопрос" required>
         <select class="question-type">
             <option value="text">Текстовый ответ</option>
@@ -73,65 +98,81 @@ function addQuestion() {
         <button type="button" class="add-answer-btn">Добавить вариант ответа</button>
     `;
 
-    container.appendChild(questionDiv);
+  container.appendChild(questionDiv);
 
-    // Добавляем функциональность для кнопки добавления вариантов ответа
-    questionDiv.querySelector(".add-answer-btn").addEventListener("click", function () {
-        addAnswer(this);
+  // Добавляем функциональность для кнопки добавления вариантов ответа
+  questionDiv
+    .querySelector(".add-answer-btn")
+    .addEventListener("click", function () {
+      addAnswer(this);
     });
 }
 
 // Добавление варианта ответа
 function addAnswer(button) {
-    const answerContainer = button.previousElementSibling; // Контейнер для вариантов ответа
-    const answerInput = document.createElement("input");
-    answerInput.type = "text";
-    answerInput.placeholder = "Введите вариант ответа";
-    answerContainer.appendChild(answerInput);
+  const answerContainer = button.previousElementSibling; // Контейнер для вариантов ответа
+  const answerInput = document.createElement("input");
+  answerInput.type = "text";
+  answerInput.placeholder = "Введите вариант ответа";
+  answerContainer.appendChild(answerInput);
 }
 
 // Сохранение опроса
 function saveSurvey(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    const title = document.getElementById("survey-title").value;
-    const questions = [...document.querySelectorAll("#questions-container .question")].map(question => {
-        const questionText = question.querySelector("input").value;
-        const questionType = question.querySelector(".question-type").value;
+  const title = document.getElementById("survey-title").value;
+  const questions = [
+    ...document.querySelectorAll("#questions-container .question"),
+  ].map((question) => {
+    const questionText = question.querySelector("input").value;
+    const questionType = question.querySelector(".question-type").value;
 
-        let answers = [];
-        if (questionType === "radio" || questionType === "checkbox") {
-            answers = [...question.querySelectorAll(".answer-container input")].map(input => input.value);
-        }
+    let answers = [];
+    if (questionType === "radio" || questionType === "checkbox") {
+      answers = [...question.querySelectorAll(".answer-container input")].map(
+        (input) => input.value
+      );
+    }
 
-        return { text: questionText, type: questionType, answers };
-    });
+    return { text: questionText, type: questionType, answers };
+  });
 
-    const survey = { title, questions };
-    surveys.push(survey);
+  const survey = { title, questions };
+  surveys.push(survey);
 
-    localStorage.setItem("surveys", JSON.stringify(surveys));
-    alert("Опрос сохранен!");
-    showDashboardPage();
+  localStorage.setItem("surveys", JSON.stringify(surveys));
+  alert("Опрос сохранен!");
+  showDashboardPage();
 }
 
 // Просмотр опроса (обновлено для отображения ответов)
 function viewSurvey(index) {
-    const survey = surveys[index];
-    content.innerHTML = `
+  const survey = surveys[index];
+  content.innerHTML = `
         <div class="container">
             <h2>${survey.title}</h2>
             <ul>
-                ${survey.questions.map(question => `
+                ${survey.questions
+                  .map(
+                    (question) => `
                     <li>
                         <strong>${question.text}</strong>
-                        ${question.answers.length > 0 ? `
+                        ${
+                          question.answers.length > 0
+                            ? `
                             <ul>
-                                ${question.answers.map(answer => `<li>${answer}</li>`).join("")}
+                                ${question.answers
+                                  .map((answer) => `<li>${answer}</li>`)
+                                  .join("")}
                             </ul>
-                        ` : ""}
+                        `
+                            : ""
+                        }
                     </li>
-                `).join("")}
+                `
+                  )
+                  .join("")}
             </ul>
             <button onclick="showDashboardPage()">Назад</button>
         </div>
