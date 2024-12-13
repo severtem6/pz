@@ -143,3 +143,17 @@ form {
 .add-answer-btn:hover {
   background-color: #4b00b0;
 }
+
+a{
+  color: #ddd;
+  text-decoration: none;
+  margin-left: 250px;
+}
+
+h2{
+  color: white;
+}
+
+ul{
+  color: white;
+}

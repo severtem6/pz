@@ -15,7 +15,7 @@ document
 function showDashboardPage() {
   content.innerHTML = `
           <div class="container">
-              <h2>Личный Кабинет</h2>
+              <h2>Личный Кабинет <a href="../index.html">Выход</a></h2>
               <ul class="survey-list">
                   ${surveys
                     .map(
