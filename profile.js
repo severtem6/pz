@@ -1,3 +1,67 @@
+// Определяем функцию просмотра в глобальной области
+window.viewSurvey = function (surveyTitle) {
+  const surveys = JSON.parse(localStorage.getItem("surveys") || "[]");
+  const survey = surveys.find((s) => s.title === surveyTitle);
+
+  if (!survey) {
+    console.error("Опрос не найден");
+    return;
+  }
+
+  // Создаем модальное окно
+  const modal = document.createElement("div");
+  modal.className = "modal";
+  modal.innerHTML = `
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>${survey.title || "Опрос без названия"}</h2>
+        <button class="close-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        ${survey.questions
+          .map(
+            (question, qIndex) => `
+            <div class="modal-question">
+              <h3>Вопрос ${qIndex + 1}</h3>
+              <p>${question.title}</p>
+              ${
+                question.type === "text"
+                  ? '<input type="text" disabled placeholder="Текстовый ответ" class="modal-text-input">'
+                  : question.options
+                      .map(
+                        (option) => `
+                      <div class="modal-option">
+                        <input type="${question.type}" disabled>
+                        <label>${option}</label>
+                      </div>
+                    `
+                      )
+                      .join("")
+              }
+            </div>
+          `
+          )
+          .join("")}
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  // Закрытие модального окна
+  const closeBtn = modal.querySelector(".close-modal");
+  closeBtn.addEventListener("click", () => {
+    modal.remove();
+  });
+
+  // Закрытие по клику вне модального окна
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.remove();
+    }
+  });
+};
+
 document.addEventListener("DOMContentLoaded", function () {
   const surveysCount = document.getElementById("surveys-count");
   const responsesCount = document.getElementById("responses-count");
@@ -23,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     recentSurveys.innerHTML = recentSurveysList
       .map(
-        (survey, index) => `
+        (survey) => `
         <div class="recent-survey-item">
           <div class="survey-info">
             <h3>${survey.title || "Опрос без названия"}</h3>
@@ -33,9 +97,9 @@ document.addEventListener("DOMContentLoaded", function () {
             ).toLocaleDateString()}</p>
           </div>
           <div class="survey-actions">
-            <button onclick="viewSurvey(${
-              surveys.length - 5 + index
-            })" class="view-btn">Просмотреть</button>
+            <button onclick="viewSurvey('${
+              survey.title
+            }')" class="view-btn">Просмотреть</button>
           </div>
         </div>
       `
@@ -44,12 +108,4 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   updateStats();
-
-  // Добавляем функцию просмотра в глобальную область
-  window.viewSurvey = function (index) {
-    const surveys = JSON.parse(localStorage.getItem("surveys") || "[]");
-    const survey = surveys[index];
-    localStorage.setItem("currentSurvey", JSON.stringify(survey));
-    window.location.href = "view-survey.html";
-  };
 });

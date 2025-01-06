@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Прохождение опроса</title>
+    <title>Ответы на опрос</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -12,20 +12,25 @@
         <a href="surveys.html" class="nav-link">Мои опросы</a>
         <div class="nav-right">
           <a href="profile.html" class="nav-link">Профиль</a>
-          <a href="index.html" class="nav-link">Выйти</a>
+          <a href="#" onclick="logout()" class="nav-link">Выйти</a>
         </div>
       </nav>
+
       <div class="view-header">
         <h1 id="survey-title">Загрузка опроса...</h1>
         <a href="surveys.html" class="back-btn">← Назад к списку</a>
       </div>
-      <form id="survey-form" class="survey-content">
-        <!-- Сюда будут добавляться вопросы -->
-      </form>
-      <button type="submit" form="survey-form" class="submit-survey">
-        Отправить ответы
-      </button>
+
+      <div class="responses-stats">
+        <h2>Статистика ответов</h2>
+        <p id="total-responses">Всего ответов: 0</p>
+      </div>
+
+      <div id="responses-content" class="responses-content">
+        <!-- Сюда будут добавляться ответы -->
+      </div>
     </div>
-    <script src="take-survey.js"></script>
+    <script src="auth.js"></script>
+    <script src="survey-responses.js"></script>
   </body>
 </html>

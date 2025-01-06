@@ -96,6 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
     e.preventDefault();
 
     const questions = [];
+    const surveyTitle = document.getElementById("survey-title").value.trim();
     document.querySelectorAll(".question").forEach((questionDiv) => {
       const type = questionDiv.querySelector(".question-type").value;
       const question = {
@@ -113,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     const survey = {
-      title: document.querySelector(".form-header h1").textContent,
+      title: surveyTitle || "Опрос без названия",
       questions: questions,
       createdAt: new Date().toISOString(),
     };

@@ -34,3 +34,34 @@ function handleYandexCallback() {
       .catch((error) => console.error("Ошибка:", error));
   }
 }
+
+// Добавьте в конец файла
+function logout() {
+  // Очищаем данные пользователя
+  localStorage.removeItem("currentUser");
+  // Перенаправляем на страницу входа
+  window.location.href = "index.html";
+}
+
+// Проверяем авторизацию на защищенных страницах
+function checkAuth() {
+  const protectedPages = [
+    "surveys.html",
+    "question.html",
+    "profile.html",
+    "view-survey.html",
+    "take-survey.html",
+  ];
+
+  const currentPage = window.location.pathname.split("/").pop();
+
+  if (protectedPages.includes(currentPage)) {
+    const currentUser = localStorage.getItem("currentUser");
+    if (!currentUser) {
+      window.location.href = "index.html";
+    }
+  }
+}
+
+// Вызываем проверку при загрузке страницы
+document.addEventListener("DOMContentLoaded", checkAuth);
